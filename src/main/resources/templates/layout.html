@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" th:href="@{https://www.w3schools.com/w3css/4/w3.css}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet"> 
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+	crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=2">
+<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+
+</style>
+</head>
+<body class="w3-light-grey">
+<!--MENU PRINCIPAL -->
+<header th:fragment="header" class="w3-display-container w3-content" style="max-width:1500px;">
+<div class="w3-bar w3-white w3-large">
+  <a th:href="@{/}" class="w3-bar-item w3-button w3-green w3-mobile"><i class="fas fa-home"></i> RentaFacil</a>
+  <a href="#about" class="w3-bar-item w3-button w3-beige w3-mobile"><i class="fas fa-users"></i> Quienes Somos?</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-beige  w3-mobile"><i class="fas fa-address-book"></i> Contactos</a>
+  
+  <!-- Lista de Menu para funcionalidades  -->
+  
+  
+  <div class="w3-dropdown-hover">
+    <button class="w3-button w3-beige" ><i class="fas fa-angle-double-right"></i>Funcionalidades</button>
+    <div class="w3-dropdown-content w3-bar-block w3-green  w3-card-4">
+      <a th:href="@{/inmueble/list}" class="w3-bar-item w3-button w3-mobile"><i class="fas fa-asterisk"></i>Inmueble</a>
+      <a th:href="@{/propietario/list}" class="w3-bar-item w3-button w3-mobile"><i class="fas fa-asterisk"></i>Propietario</a>
+      <a th:href="@{/arrendatario/list}" class="w3-bar-item w3-button w3-mobile"><i class="fas fa-asterisk"></i>Arrendatario</a>
+      <a th:href="@{/detallepago/list}" class="w3-bar-item w3-button w3-mobile"><i class="fas fa-asterisk"></i>Detalle de Pago</a>
+      <a th:href="@{/ciudad/list}" class="w3-bar-item w3-button w3-mobile"><i class="fas fa-asterisk"></i>Ciudad</a>
+      <a th:href="@{/alquiler/list}" class="w3-bar-item w3-button w3-mobile"><i class="fas fa-asterisk"></i>Alquiler</a>
+    </div>
+  </div>
+  <a href="#rooms" class="w3-bar-item w3-button w3-right w3-beige w3-mobile"><i class="fas fa-store-alt"></i> Departamentos</a>
+</div>
+<!-- Header -->
+
+  	<div  id="divSuccess" class="alert alert-success" role="alert" th:if="${success!=null}">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close"> &times;</a>
+		<span th:text="${success}"></span>
+	</div>
+	<div id="divError" class="alert alert-error" role="alert" th:if="${error!=null}">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close"> &times;</a>
+		<span th:text="${error}"></span>
+	</div>
+	
+	<div id="divWarning" class="alert alert-warning" role="alert" th:if="${warning!=null}">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close"> &times;</a>
+		<span th:text="${warning}"></span>
+	</div>
+	
+	<div id="divInfo" class="alert alert-info"  role="alert" th:if="${info!=null}">
+	 <a href="#" class="close" data-dismiss="alert" aria-label="close"> &times;</a>
+		<span th:text="${info}"></span>
+	</div>
+</header>
+
+<!-- Footer -->
+<footer class="w3-padding-32 w3-black w3-center w3-margin-top" th:fragment="footer" >
+  <h5>Trabajamos con:</h5>
+  <div class="w3-xlarge w3-padding-16">
+    <i class="fab fa-twitter"></i>
+	<i class="fab fa-facebook"></i>
+	<i class="fab fa-instagram"></i>
+	<i class="fas fa-at"></i>
+  </div>
+		<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+		<script th:src="@{/js/popper.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+	    <script th:src="@{/js/layout.js}"></script>
+</footer>
+</body>
+</html>

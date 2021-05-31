@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<header th:replace="layout :: header"></header>
+	<div class="container">
+		<br />
+		<div class="card col-md-12">
+			<div class="card-body">
+				<div class="form-group row">
+					<div class="content col-sm-1">
+						<i class="fas fa-wrench" style="font-size:36px;color:blue"></i>
+					</div>
+					<h3 class="card-title col-sm-10" th:text="${title}"></h3>
+					<div class="col-sm-1"></div>
+				</div>
+				<hr />
+				<form th:action="@{/propietario/form}" th:object="${propietario}" method="post">
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-file-signature"></i>
+							<label for="cedula" class="h5 col-form-label">&nbsp;C&eacute;dula:</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="text" th:field="*{cedula}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('cedula')}" 
+								   th:errors="*{cedula}">
+						    </small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="far fa-signature"></i>
+							<label for="nombre" class="h5 col-form-label">&nbsp;Nombre:</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="text" th:field="*{nombre}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('nombre')}" 
+								   th:errors="*{nombre}">
+						    </small>
+						</div>
+					</div>	
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="far fa-signature"></i>
+							<label for="apellido" class="h5 col-form-label">&nbsp;Apellido:</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="text" th:field="*{apellido}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('apellido')}" 
+								   th:errors="*{apellido}">
+						    </small>
+						</div>
+					</div>	
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-phone-plus"></i>
+							<label for="telefono" class="h5 col-form-label">&nbsp;Tel&eacute;fono</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="text" th:field="*{telefono}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('telefono')}" 
+								   th:errors="*{telefono}">
+						    </small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-location-arrow"></i>
+							<label for="direccion" class="h5 col-form-label">&nbsp;Direcci&oacute;n</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="text" th:field="*{direccion}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('direccion')}" 
+								   th:errors="*{direccion}">
+						    </small>
+						</div>
+					</div>
+					<!-- Agregar la propiedad Id de las entidades relacionadas en los combo box -->
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-map-marker-alt"></i>
+							<label for="ciudad" class="h5 col-form-label">&nbsp;Ciudad:</label>
+						</div>
+						<div class="col-sm-4">
+							<select th:field="*{ciudad.idciudad}"
+								class="form-control">
+								<option value="0">-- Seleccione --</option>
+								<option th:each="ciu : ${ciudades}"
+									th:value="${ciu.idciudad}" th:text="${ciu.nombre}">
+								</option>
+							</select>
+						</div>
+					</div>
+					<hr />
+					<div class="form-group row">
+						<div class="col-sm-4">
+							<a class="btn btn-danger" th:href="@{/propietario/list}" style="background-color:CRIMSON"><i
+								class="fas fa-minus-circle"></i>&nbsp;Cancelar</a>
+							<button class="btn btn-success" type="submit"style="background-color:teal">
+								<i class="fas fa-plus-circle"></i>&nbsp;Guardar
+							</button>
+						</div>
+					</div>
+					<input type="hidden" th:field="*{idpropietario}" />
+				</form>
+			</div>
+		</div>	
+	</div>
+	<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

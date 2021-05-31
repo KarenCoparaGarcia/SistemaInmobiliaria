@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<header th:replace="layout :: header"></header>
+	<div class="container">
+		<br />
+		<div class="card col-md-12">
+			<div class="card-body">
+				<div class="form-group row">
+					<div class="content col-sm-1">
+						<i class="fas fa-wrench" style="font-size:36px;color:blue"></i>
+					</div>
+					<h3 class="card-title col-sm-10" th:text="${title}"></h3>
+					<div class="col-sm-1"></div>
+				</div>
+				<hr />
+				<form th:action="@{/arrendatario/form}" th:object="${arrendatario}" method="post">
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-id-card"></i>
+							<label for="cedula" class="h5 col-form-label">&nbsp;C&eacute;dula:</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="text" th:field="*{cedula}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('cedula')}" 
+								   th:errors="*{cedula}">
+						    </small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-signature"></i>
+							<label for="nombre" class="h5 col-form-label">&nbsp;Nombre:</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="text" th:field="*{nombre}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('nombre')}" 
+								   th:errors="*{nombre}">
+						    </small>
+						</div>
+					</div>	
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-signature"></i>
+							<label for="apellido" class="h5 col-form-label">&nbsp;Apellido:</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="text" th:field="*{apellido}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('apellido')}" 
+								   th:errors="*{apellido}">
+						    </small>
+						</div>
+					</div>	
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-calendar-alt"></i>
+							<label for="fechanacimiento" class="h5 col-form-label">&nbsp;fechanacimiento:</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="date" th:field="*{fechanacimiento}" />
+						     <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('fechanacimiento')}" 
+								   th:errors="*{fechanacimiento}">
+						    </small>								
+						</div>
+					</div>	
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-phone-volume"></i>
+							<label for="telefono" class="h5 col-form-label">&nbsp;Tel&eacute;fono</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="text" th:field="*{telefono}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('telefono')}" 
+								   th:errors="*{telefono}">
+						    </small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-transgender"></i>
+							<label for="sexo" class="h5 col-form-label">&nbsp;Sexo</label>
+						</div>
+						<div class="col-sm-4">
+						 		<select th:field="*{sexo}" name="sexo" class="form-control">
+                                    <option value="0"> Seleccione--</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Masculino">Masculino</option>
+                                </select>
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('sexo')}" 
+								   th:errors="*{sexo}">
+						    </small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-handshake"></i>
+							<label for="estadocivil" class="h5 col-form-label">&nbsp;Estado Civil</label>
+						</div>
+						<div class="col-sm-4">
+						 		<select th:field="*{estadocivil}" name="estadocivil" class="form-control">
+                                    <option value="0"> Seleccione--</option>
+                                    <option value="Casado">Casado/a</option>
+                                    <option value="Soltero">Soltero/a</option>
+                                    <option value="Divorciado">Divorciado/a</option>
+                                    <option value="Viudo">Viudo/a</option>
+                                    <option value="UnionLibre">Union Libre</option>
+                                </select>
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('estadocivil')}" 
+								   th:errors="*{estadocivil}">
+						    </small>
+						</div>
+					</div>
+					<hr />
+					<div class="form-group row">
+						<div class="col-sm-4">
+							<a class="btn btn-danger" th:href="@{/arrendatario/list}" style="background-color:CRIMSON"><i
+								class="fas fa-minus-circle"></i>&nbsp;Cancelar</a>
+							<button class="btn btn-success" type="submit"style="background-color:teal">
+								<i class="fas fa-plus-circle"></i>&nbsp;Guardar
+							</button>
+						</div>
+					</div>
+					<input type="hidden" th:field="*{idarrendatario}" />
+				</form>
+			</div>
+		</div>	
+	</div>
+	<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

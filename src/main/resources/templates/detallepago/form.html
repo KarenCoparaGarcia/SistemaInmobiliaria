@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<header th:replace="layout :: header"></header>
+	<div class="container">
+		<br />
+		<div class="card col-md-12">
+			<div class="card-body">
+				<div class="form-group row">
+					<div class="content col-sm-1">
+						<i class="fas fa-wrench" style="font-size:36px;color:blue"></i>
+					</div>
+					<h3 class="card-title col-sm-10" th:text="${title}"></h3>
+					<div class="col-sm-1"></div>
+				</div>
+				<hr />
+				<form th:action="@{/detallepago/form}" th:object="${detallepago}" method="post">
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-calendar-times"></i>
+							<label for="mes" class="h5 col-form-label">&nbsp;Mes:</label>
+						</div>
+						 <div class="col-sm-4">
+						 		<select th:field="*{mes}" name="mes" class="form-control">
+                                    <option value="0"> Seleccione Mes</option>
+                                    <option value="Enero">Enero</option>
+                                    <option value="Febrero">Febrero</option>
+                                    <option value="Marzo">Marzo</option>
+                                    <option value="Abril">Abril</option>
+                                    <option value="Mayo">Mayo</option>
+                                    <option value="Junio">Junio</option>
+                                    <option value="Julio">Julio</option>
+                                    <option value="Agosto">Agosto</option>
+                                    <option value="Septiembre">Septiembre</option>
+                                    <option value="Octubre">Octubre</option>
+                                    <option value="Noviembre">Noviembre</option>
+                                    <option value="Diciembre">Diciembre</option>
+                                </select>
+							<!-- <input class="form-control" type="month" th:field="*{mes}" />-->
+							<small class="text text-danger" 
+								   th:if="${#fields.hasErrors('mes')}" 
+								   th:errors="*{mes}">
+						    </small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="far fa-money-bill-alt"></i> 
+							<label for="valor" class="h5 col-form-label">&nbsp;Valor:</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="number" th:field="*{valor}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('valor')}" 
+								   th:errors="*{valor}">
+						    </small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-users"></i>
+							<label for="alquiler" class="h5 col-form-label">&nbsp;Datos Alquiler:</label>
+						</div>
+						<div class="col-sm-4">
+							<select th:field="*{alquiler.idalquiler}"
+								class="form-control">
+								<option value="0">-- Seleccione --</option>
+								<option th:each="alq: ${alquileres}"
+									th:value="${alq.idalquiler}" th:text="${alq.arrendatario.nombre}">
+								</option>
+							</select>
+						</div>
+					</div>	
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-money-check-alt"></i>
+							<label for="estado" class="h5 col-form-label">&nbsp;Estado de Pago:</label>
+						</div>
+						<div class="col-sm-4">
+						 		<select th:field="*{estado}" name="estado" class="form-control">
+                                    <option value="0"> Seleccione--</option>
+                                    <option value="Credito">Tarjeta de Credito</option>
+                                    <option value="Debito">Tarjeta de Debito</option>
+                                    <option value="Contado">Pago de Contado</option>
+                                </select>
+							<!--<input class="form-control" type="text" th:field="*{estado}" />  -->
+						     <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('estado')}" 
+								   th:errors="*{estado}">
+						    </small>
+						</div>
+					</div>	
+					<hr />
+					<div class="form-group row">
+						<div class="col-sm-4">
+							<a class="btn btn-danger" th:href="@{/detallepago/list}" style="background-color:CRIMSON"><i
+								class="fas fa-minus-circle"></i>&nbsp;Cancelar</a>
+							<button class="btn btn-success" type="submit"style="background-color:teal">
+								<i class="fas fa-plus-circle"></i>&nbsp;Guardar
+							</button>
+						</div>
+					</div>
+					<input type="hidden" th:field="*{iddetalle}" />
+				</form>
+			</div>
+		</div>	
+	</div>
+	<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+table, th, tr , td {
+  border: 3px solid black;
+}
+</style>
+</head>
+<body>
+<header th:replace="layout :: header"></header>
+	<div class="container">
+		<br />
+		<div class="card col-md-12">
+			<div class="card-body">
+				<div class="form-group row" >
+					<div class="content col-sm-1">
+						<i class="fa fa-th-large" style="font-size:36px;color:blue"></i>
+					</div>
+					<h3 class="card text-left" style="color:black" th:text="${title}"></h3>
+					<div class="col-sm-1"></div>
+				</div>
+				<hr />			
+				<table class="table" style="background-color:OLDLACE;color:black" >
+					  <thead >
+						<tr>
+							<th><i class="fas fa-file-alt" style="font-size:36px;color:SPRINGGREEN"></i></th>
+							<th><i class="fas fa-check-square" style="font-size:36px;color:FUCHSIA"></i></th>
+						</tr>
+						<tr>
+							<th>Nombre</th>
+							<th><a class="btn btn-sm btn-success"
+								th:href="@{/ciudad/form}"><i class="fas fa-clipboard"></i>&nbsp;Nuevo</a></th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="ciu: ${ciudades}">
+							<td th:text="${ciu.nombre}"></td>
+							<td><a class="btn btn-sm btn-warning"
+								th:href="@{/ciudad/form/} + ${ciu.idciudad}"><i class="fas fa-pen-square" style="font-size:18px"></i></a> <a class="btn btn-sm btn-primary"
+								th:href="@{/ciudad/card/} + ${ciu.idciudad}"><i class="fab fa-tripadvisor" style="font-size:18px"></i></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+</div>
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

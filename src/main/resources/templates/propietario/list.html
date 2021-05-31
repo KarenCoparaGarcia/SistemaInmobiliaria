@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+table, th, tr , td {
+  border: 3px solid black;
+}
+</style>
+</head>
+<body>
+<header th:replace="layout :: header"></header>
+	<div class="container">
+		<br />
+		<div class="card col-md-12">
+			<div class="card-body">
+				<div class="form-group row" >
+					<div class="content col-sm-1">
+						<i class="fa fa-th-large" style="font-size:36px;color:blue"></i>
+					</div>
+					<h3 class="card text-left" style="color:black" th:text="${title}"></h3>
+					<div class="col-sm-1"></div>
+				</div>
+				<hr />			
+				<table class="table" style="background-color:OLDLACE;color:black" >
+					  <thead >
+						<tr>
+						    <th><i class="fas fa-file-signature" style="font-size:36px;color:SPRINGGREEN"></i></th>
+							<th><i class="fas fa-file-signature" style="font-size:36px;color:SPRINGGREEN"></i></th>
+							<th><i class="fas fa-file-signature" style="font-size:36px;color:FUCHSIA"></i></th>
+							<th><i class="fas fa-location-arrow" style="font-size:36px;color:FUCHSIA"></i></th>
+							<th><i class="fas fa-phone-volume" style="font-size:36px;color:FUCHSIA"></i></th>
+							<th><i class="fas fa-map-marker-alt" style="font-size:36px;color:FUCHSIA"></i></th>
+							<th><i class="fas fa-bookmark" style="font-size:36px;color:FUCHSIA"></i></th>
+						</tr>
+						<tr>
+						    <th>Cedula</th>
+							<th>Nombre</th>
+							<th>Apellido</th>
+							<th>Direccion</th>
+							<th>Tel&eacute;fono</th>
+							<th>Ciudad</th>
+							<th><a class="btn btn-sm btn-success"
+								th:href="@{/propietario/form}"><i class="fas fa-clipboard"></i>&nbsp;Nuevo</a></th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="pro: ${propietarios}">
+							<td th:text="${pro.cedula}"></td>
+							<td th:text="${pro.nombre}"></td>
+							<td th:text="${pro.apellido}"></td>
+							<td th:text="${pro.direccion}"></td>
+							<td th:text="${pro.telefono}"></td>
+							<td th:text="${pro.ciudad.nombre}"></td>
+							<td><a class="btn btn-sm btn-warning"
+								th:href="@{/propietario/form/} + ${pro.idpropietario}"><i class="fas fa-pen-square" style="font-size:18px"></i></a> <a class="btn btn-sm btn-primary"
+								th:href="@{/propietario/card/} + ${pro.idpropietario}"><i class="fab fa-tripadvisor" style="font-size:18px"></i></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+</div>
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

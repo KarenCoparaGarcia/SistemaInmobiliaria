@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body>
+	<header th:replace="layout :: header"></header>
+<div class="container">
+		<br />
+		<div class="card col-md-12">
+			<div class="card-body">
+				<div class="form-group row">
+					<div class="content col-sm-1">
+						<i class="far fa-signature"></i>
+					</div>
+					<h3 class="card-title col-sm-6" th:text="${propietario.nombre}"></h3>
+					
+					<div class="col-sm-4">
+						<a th:href="@{/propietario/delete/} + ${propietario.idpropietario}"
+							class="btn btn-danger"
+							onclick="return confirm('¿Desea eliminar el Propietario?');"><i
+							class="fas fa-trash-alt"></i>&nbsp;Eliminar</a> <a
+							class="btn btn-success" th:href="@{/propietario/list}"><i
+							class="fas fa-arrow-circle-left"></i>&nbsp;Volver</a>
+					</div>
+				</div>
+				<hr />
+				<div class="form-group row">
+					<div class="content col-sm-3">
+						<i class="fas fa-passport"></i><label class="h6 col-form-label">&nbsp;C&eacute;dula:</label>
+					</div>
+					<div class="col-sm-4">
+						<h5 class="card-text" th:text="${propietario.cedula}"></h5>
+					</div>
+				</div>	
+				<div class="form-group row">
+					<div class="content col-sm-3">
+						<i class="fas fa-phone-plus"></i><label
+							class="h6 col-form-label">&nbsp;Tel&eacute;fono:</label>
+					</div>
+					<div class="col-sm-4">
+						<h5 class="card-text" th:text="${propietario.telefono}"></h5>
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="content col-sm-3">
+						<i class="fas fa-map-marker-alt"></i><label
+							class="h6 col-form-label">&nbsp;Ciudad:</label>
+					</div>
+					<div class="col-sm-4">
+						<h5 class="card-text" th:text="${propietario.ciudad.nombre}"></h5>
+					</div>
+				</div>
+				<hr />		
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
+
+
+
+

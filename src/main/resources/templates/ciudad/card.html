@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body>
+	<header th:replace="layout :: header"></header>
+	<div class="container">
+		<br />
+		<div class="card col-md-18">
+			<div class="card-body">
+				<div class="form-group row">
+				<div class="form-group row">
+					<div class="content col-sm-1">
+						<i class="fas fa-wrench" style="font-size:36px;color:blue"></i>
+					</div>
+					<h3 class="card-title col-sm-10" th:text="${title}"></h3>
+					<div class="col-sm-1"></div>
+				</div>
+				<hr />
+					<div class="col-sm-4">
+						<a th:href="@{/ciudad/delete/} + ${ciudad.idciudad}"
+							class="btn btn-danger"
+							onclick="return confirm('¿Desea eliminar la ciudad?');" style="background-color:CRIMSON" ><i class="fas fa-minus-circle"></i>&nbsp;Eliminar</a> <a
+							class="btn btn-success" style="background-color:teal" th:href="@{/ciudad/list}"><i
+							class="fas fa-arrow-circle-left"></i>&nbsp;Volver</a>
+					</div>
+				</div>
+				<hr />	
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
+
+
+
+

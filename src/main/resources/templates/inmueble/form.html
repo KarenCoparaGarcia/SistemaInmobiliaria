@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<header th:replace="layout :: header"></header>
+	<div class="container">
+		<br />
+		<div class="card col-md-12">
+			<div class="card-body">
+				<div class="form-group row">
+					<div class="content col-sm-1">
+						<i class="fas fa-wrench" style="font-size:36px;color:blue"></i>
+					</div>
+					<h3 class="card-title col-sm-10" th:text="${title}"></h3>
+					<div class="col-sm-1"></div>
+				</div>
+				<hr />
+				<form th:action="@{/inmueble/form}" th:object="${inmueble}" method="post">
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-directions"></i>
+							<label for="direccion" class="h5 col-form-label">&nbsp;Direcci&oacute;n:</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="text" th:field="*{direccion}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('direccion')}" 
+								   th:errors="*{direccion}">
+						    </small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-road"></i>
+							<label for="barrio" class="h5 col-form-label">&nbsp;Barrio:</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="text" th:field="*{barrio}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('barrio')}" 
+								   th:errors="*{barrio}">
+						    </small>
+						</div>
+					</div>	
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-vote-yea"></i>
+							<label for="anio" class="h5 col-form-label">&nbsp;A&ntilde;o:</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="number" th:field="*{anio}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('anio')}" 
+								   th:errors="*{anio}">
+						    </small>
+						</div>
+					</div>	
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-person-booth"></i>
+							<label for="tipo" class="h5 col-form-label">&nbsp;Tipo:</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="text" th:field="*{tipo}" />
+						     <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('tipo')}" 
+								   th:errors="*{tipo}">
+						    </small>								
+						</div>
+					</div>	
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-chart-area"></i>
+							<label for="superficie" class="h5 col-form-label">&nbsp;Superficie</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="text" th:field="*{superficie}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('superficie')}" 
+								   th:errors="*{superficie}">
+						    </small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-person-booth"></i>
+							<label for="dormitorios" class="h5 col-form-label">&nbsp;Dormitorios</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="number" th:field="*{dormitorios}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('dormitorios')}" 
+								   th:errors="*{dormitorios}">
+						    </small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-transgender"></i>
+							<label for="garage" class="h5 col-form-label">&nbsp;Garage</label>
+						</div>
+						<div class="col-sm-4">
+						 		<select th:field="*{garage}" name="garage" class="form-control">
+                                    <option value="0"> Seleccione--</option>
+                                    <option value="Si">Si</option>
+                                    <option value="No">No</option>
+                                </select>
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('garage')}" 
+								   th:errors="*{garage}">
+						    </small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-dollar-sign"></i>
+							<label for="precio" class="h5 col-form-label">&nbsp;Precio: </label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="number" th:field="*{precio}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('precio')}" 
+								   th:errors="*{precio}">
+						    </small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-map-marked-alt"></i>
+							<label for="ciudad" class="h5 col-form-label">&nbsp;Ciudad:</label>
+						</div>
+						<div class="col-sm-4">
+							<select th:field="*{ciudad.idciudad}"
+								class="form-control">
+								<option value="0">-- Seleccione --</option>
+								<option th:each="ciu : ${ciudades}"
+									th:value="${ciu.idciudad}" th:text="${ciu.nombre}">
+								</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-users"></i>
+							<label for="propietario" class="h5 col-form-label">&nbsp;Propietario:</label>
+						</div>
+						<div class="col-sm-4">
+							<select th:field="*{propietario.idpropietario}"
+								class="form-control">
+								<option value="0">-- Seleccione --</option>
+								<option th:each="pro: ${propietarios}"
+									th:value="${pro.idpropietario}" th:text="${pro.nombre}">
+								</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-transgender"></i>
+							<label for="estado" class="h5 col-form-label">&nbsp;Estado</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="text" th:field="*{estado}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('estado')}" 
+								   th:errors="*{estado}">
+						    </small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="content col-sm-3">
+							<i class="fas fa-comment"></i>
+							<label for="observaciones" class="h5 col-form-label">&nbsp;Observaciones: </label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="text" th:field="*{observaciones}" />
+								  <small class="text text-danger" 
+								   th:if="${#fields.hasErrors('observaciones')}" 
+								   th:errors="*{observaciones}">
+						    </small>
+						</div>
+					</div>
+					<hr />
+					<div class="form-group row">
+						<div class="col-sm-4">
+							<a class="btn btn-danger" th:href="@{/inmueble/list}" style="background-color:CRIMSON"><i
+								class="fas fa-minus-circle"></i>&nbsp;Cancelar</a>
+							<button class="btn btn-success" type="submit"style="background-color:teal">
+								<i class="fas fa-plus-circle"></i>&nbsp;Guardar
+							</button>
+						</div>
+					</div>
+					<input type="hidden" th:field="*{idinmueble}" />
+				</form>
+			</div>
+		</div>	
+	</div>
+	<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
